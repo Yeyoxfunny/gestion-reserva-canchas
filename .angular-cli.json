@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src/main/webapp",
-      "outDir": "src/main/resources/static",
+      "outDir": "src/main/resources/static/dist",
       "assets": [
         "assets",
         "favicon.ico"
@@ -49,7 +49,8 @@
   "defaults": {
     "styleExt": "css",
     "component": {
-      "inlineStyle": true
+      "inlineStyle": true,
+      "spec": false
     }
   }
 }
