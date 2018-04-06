@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+.form-login-container {
+   margin-top: 50px;
+}
+
+.form-login {
+   width: 100%;
+   max-width: 330px;
+   margin: 0 auto;
+}
+
+.form-login img.company {
+   width: 80%;
+}
+
+.alert {
+   font-size: .9rem;
+}
+
+.has-error.form-group .form-control {
+   border-color: #dc3545;
+ }
+
+ .has-error.form-group .form-control {
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+ }
+
+ .errors-container span {
+   display: block;
+   color: #dc3545;
+   font-size: 14px;
+ }

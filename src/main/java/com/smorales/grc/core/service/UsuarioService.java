@@ -36,6 +36,10 @@ public class UsuarioService {
 	public UsuarioDTO consultar(Long id) {
 		return mapper.convertirADTO(repository.getOne(id));
 	}
+	
+	public UsuarioDTO consultarPorEmail(String email) {
+		return mapper.convertirADTO(repository.findByEmail(email));
+	}
 
 	public UsuarioDTO crear(UsuarioDTO usuarioDTO) throws ValidacionException {
 		if (usuarioDTO.getRol() == Authority.CLIENTE) {
