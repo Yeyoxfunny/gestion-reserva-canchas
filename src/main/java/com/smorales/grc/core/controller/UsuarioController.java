@@ -14,7 +14,7 @@ import com.smorales.grc.core.service.UsuarioService;
 import com.smorales.grc.core.service.ValidacionException;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
 	private UsuarioService service;
