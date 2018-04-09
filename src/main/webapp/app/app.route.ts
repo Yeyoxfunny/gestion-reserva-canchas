@@ -5,5 +5,9 @@ export const appRoutes: Routes = [
    {
       path: '',
       component: AuthenticationComponent
+   },
+   {
+      path: 'admin',
+      loadChildren: './admin/admin.module#AdminModule'
    }
 ];

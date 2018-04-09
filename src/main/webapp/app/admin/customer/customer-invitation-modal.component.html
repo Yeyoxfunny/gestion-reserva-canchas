@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title">Nuevo Cliente</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form #invitadoForm="ngForm">
+        <div class="form-group" [ngClass]="{ 'has-error': nombre.dirty && nombre.invalid }">
+            <label for="">Nombre</label>
+            <input class="form-control" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="invitacion.nombre" required>
+            <div class="errors-container" *ngIf="nombre.dirty && nombre.invalid">
+                <span *ngIf="nombre.errors.required">El nombre es requerido</span>
+            </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': apellido.dirty && apellido.invalid }">
+            <label for="">Apellido</label>
+            <input class="form-control" type="text" name="apellido" #apellido="ngModel" [(ngModel)]="invitacion.apellidos" required>
+            <div class="errors-container" *ngIf="apellido.dirty && apellido.invalid">
+                <span *ngIf="apellido.errors.required">El apellido es requerido</span>
+            </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': email.touched && email.invalid }">
+            <label for="">Email</label>
+            <input class="form-control" type="text" name="email" #email="ngModel" [(ngModel)]="invitacion.email" required [email]="true">
+            <div class="errors-container" *ngIf="email.dirty && email.invalid">
+                <span *ngIf="email.errors.required">El email es requerido</span>
+                <span *ngIf="!email.errors.required && email.errors.email">El campo debe ser un email</span>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="invitar(invitadoForm)">Guardar</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close()">Cancelar</button>
+</div>

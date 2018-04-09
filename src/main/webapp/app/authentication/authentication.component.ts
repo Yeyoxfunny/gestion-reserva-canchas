@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from './login.model';
-import { AuthenticationService } from './authentication.service';
+
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { FormsUtils } from '../shared/forms-utils';
+import { Router } from '@angular/router';
+
+import { AuthenticationService } from './authentication.service';
+import { AuthenticationManagerService } from '../shared/authentication-manager.service';
+import { UsuarioService } from '../shared/usuario.service';
+
+import { AccountResolver } from './account-resolver';
 
 
 @Component({
@@ -14,18 +22,25 @@ export class AuthenticationComponent implements OnInit {
   private login: Login;
 
   constructor(private service: AuthenticationService,
+              private authManager: AuthenticationManagerService,
+              private router: Router,
+              private userService: UsuarioService,
               private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
+    if (this.authManager.isLoggedIn()) {
+      this.userService.me().subscribe((user) => {
+        const redirectURL = AccountResolver.buildRedirectURL(user);
+        this.router.navigate([redirectURL]);
+      }, console.error);
+    }
     this.login = new Login();
   }
 
   registrar(loginForm) {
-    if (loginForm.form.invalid) {
-      this.setDirtyFormControls(loginForm.form.controls);
-    } else {
+    if (FormsUtils.isValid(loginForm)) {
       this.service.autenticar(this.login)
-          .subscribe(console.log, this.onErrorHandler(loginForm));
+          .subscribe((url) => this.router.navigate([url]), this.onErrorHandler(loginForm));
     }
   }
 
@@ -35,11 +50,4 @@ export class AuthenticationComponent implements OnInit {
       ngForm.resetForm();
     };
   }
-
-  private setDirtyFormControls(controls) {
-    for (const i in controls) {
-      controls[i].markAsDirty();
-    }
-  }
-
 }

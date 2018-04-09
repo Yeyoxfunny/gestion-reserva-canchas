@@ -1,28 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Login } from './login.model';
-import { API_ENDPOINT } from '../app.constants';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { AUTENTICACION_URL } from '../app.constants';
 import { AuthenticationManagerService } from '../shared/authentication-manager.service';
+import { AppHttpErroHandlerService } from '../shared/app-http-error-handler.service';
+
+import { Login } from './login.model';
 import { Usuario } from '../shared/usuario.model';
 import { Authority } from '../shared/authority.enum';
+import { AccountResolver } from './account-resolver';
 
 @Injectable()
 export class AuthenticationService {
 
    constructor(private http: HttpClient,
-      private authenticationManagerService: AuthenticationManagerService) { }
+      private authenticationManagerService: AuthenticationManagerService,
+      private errorHandler: AppHttpErroHandlerService) { }
 
    autenticar(login: Login) {
       return this.http
-               .post(API_ENDPOINT + '/autenticar', login)
+               .post(AUTENTICACION_URL, login)
                .map(this.saveAuthentication)
                .map(this.buildRedirectURL)
-               .catch(this.handleError);
+               .catch(this.errorHandler.handleError);
    }
 
    private saveAuthentication = (authentication) => {
@@ -31,24 +35,7 @@ export class AuthenticationService {
    }
 
    private buildRedirectURL(authentication) {
-      const usuario: Usuario = authentication.usuario;
-      if (usuario.rol === Authority.ADMINISTRADOR_SISTEMA) {
-         return 'admin';
-      }
-      return 'app';
+      return AccountResolver.buildRedirectURL(authentication.usuario);
    }
 
-   private handleError(error: HttpErrorResponse) {
-      console.log(error);
-      if (error instanceof ErrorEvent) {
-         console.log(error);
-      }
-      let message;
-      if (error.status >= 400 && error.status < 500) {
-         message = error.error.message;
-      } else {
-         message = 'Ha ocurrido un error en el servidor';
-      }
-      return new ErrorObservable(message);
-   }
 }

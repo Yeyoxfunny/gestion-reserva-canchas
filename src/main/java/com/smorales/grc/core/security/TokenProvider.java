@@ -37,6 +37,10 @@ public class TokenProvider {
 				.compact();
 	}
 	
+	private String getRol(Authentication authentication) {
+		return authentication.getAuthorities().stream().findFirst().get().getAuthority();
+	}
+	
 	public Optional<Authentication> obtenerAutenticacion(String token) {
 		Objects.requireNonNull(token);
 		if (!esTokenValido(token)) {
@@ -51,10 +55,6 @@ public class TokenProvider {
 				Collections.singletonList(new SimpleGrantedAuthority(authority));
 		User user = new User(claims.getSubject(), "", authorities);
 		return Optional.of(new UsernamePasswordAuthenticationToken(user, token, authorities));		
-	}
-
-	private String getRol(Authentication authentication) {
-		return authentication.getAuthorities().stream().findFirst().get().getAuthority();
 	}
 	
     public boolean esTokenValido(String authToken) {
