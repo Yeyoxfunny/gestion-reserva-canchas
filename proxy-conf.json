@@ -1,9 +1,13 @@
 {
+   "/api/*": {
+      "target": "http://localhost:8080",
+      "secure": false
+   },
    "/autenticar": {
       "target": "http://localhost:8080/",
       "secure": false
    },
-   "/api": {
+   "/clientes": {
       "target": "http://localhost:8080/",
       "secure": false
    },

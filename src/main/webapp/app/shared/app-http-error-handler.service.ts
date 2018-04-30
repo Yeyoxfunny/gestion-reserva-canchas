@@ -8,7 +8,7 @@ export class AppHttpErroHandlerService {
    constructor() { }
 
    handleError(error: HttpErrorResponse) {
-      console.log(error);
+      console.error(error);
       if (error instanceof ErrorEvent) {
          console.log(error);
       }

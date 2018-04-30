@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+   <flash-messages></flash-messages>
+   <div class="card">
+      <div class="card-header text-white text-center bg-dark">
+         <h4>Crear Cuenta</h4>
+      </div>
+      <div class="card-body">
+         <form #registroForm="ngForm" (ngSubmit)="onSubmit(registroForm)">
+            <div class="row">
+               <div class="col-md-6 form-group" [ngClass]="{ 'has-error': primerNombre.dirty && primerNombre.invalid }">
+                  <label for="primer_nombre">Primer Nombre:*</label>
+                  <input id="primer_nombre" type="text" class="form-control" name="primerNombre" ngModel #primerNombre="ngModel" required>
+                  <div class="errors-container" *ngIf="primerNombre.dirty && primerNombre.invalid">
+                     <span *ngIf="primerNombre.errors.required">El nombre es requerido</span>
+                  </div>
+               </div>
+               <div class="col-md-6 form-group">
+                  <label for="segundo_nombre">Segundo Nombre:</label>
+                  <input id="segundo_nombre" type="text" class="form-control" name="segundoNombre" ngModel>
+               </div>
+               <div class="col-md-6 form-group" [ngClass]="{ 'has-error': primerApellido.dirty && primerApellido.invalid }">
+                  <label for="primer_apellido">Primer Apellido:*</label>
+                  <input id="primer_apellido" type="text" class="form-control" name="primerApellido" ngModel #primerApellido="ngModel" required>
+                  <div class="errors-container" *ngIf="primerApellido.dirty && primerApellido.invalid">
+                     <span *ngIf="primerApellido.errors.required">El primer apellido es requerido</span>
+                  </div>
+               </div>
+               <div class="col-md-6 form-group" [ngClass]="{ 'has-error': segundoApellido.dirty && segundoApellido.invalid }">
+                  <label for="segundo_apellido">Segundo Apellido:*</label>
+                  <input id="segundo_apellido" type="text" class="form-control" name="segundoApellido" ngModel #segundoApellido="ngModel" required>
+                  <div class="errors-container" *ngIf="segundoApellido.dirty && segundoApellido.invalid">
+                     <span *ngIf="segundoApellido.errors.required">El segundo apellido es requerido</span>
+                  </div>
+               </div>
+               <div class="col-md-6 form-group" [ngClass]="{ 'has-error': email.touched && email.invalid }">
+                  <label for="email">Email:*</label>
+                  <input id="email" type="email" class="form-control" name="email" ngModel #email="ngModel" required [email]="true">
+                  <div class="errors-container" *ngIf="email.touched && email.invalid">
+                     <span *ngIf="email.errors.required">El email es requerido</span>
+                     <span *ngIf="!email.errors.required && email.errors.email">El campo debe ser un email</span>
+                  </div>
+               </div>
+               <div class="col-md-6 form-group" [ngClass]="{ 'has-error': celular.dirty && celular.invalid }">
+                  <label for="celular">Celular:*</label>
+                  <input id="celular" type="number" class="form-control" name="celular" ngModel #celular="ngModel" required>
+                  <div class="errors-container" *ngIf="celular.dirty && celular.invalid">
+                     <span *ngIf="celular.errors.required">El celular es requerido</span>
+                  </div>
+               </div>
+               <div class="col-md-6 form-group" [ngClass]="{ 'has-error': password.dirty && password.invalid }">
+                  <label for="contrasenia">Contraseña:*</label>
+                  <input id="contrasenia" type="password" class="form-control" name="contrasenia" ngModel #password="ngModel" required>
+                  <div class="errors-container" *ngIf="password.dirty && password.invalid">
+                     <span *ngIf="password.errors.required">La contraseña es requerida</span>
+                  </div>
+               </div>
+               <div class="col-md-6 form-group" [ngClass]="{ 'has-error': passwordConfirmation.touched && (passwordConfirmation.invalid || passwordConfirmation.value !== password.value) }">
+                  <label for="confirm_contrasenia">Confirmar Contraseña:*</label>
+                  <input id="confirm_contrasenia" type="password" class="form-control" name="passwordConfirmation" ngModel #passwordConfirmation="ngModel"
+                     required>
+                  <div class="errors-container" *ngIf="passwordConfirmation.touched && (passwordConfirmation.invalid || passwordConfirmation.value !== password.value)">
+                     <span *ngIf="passwordConfirmation.errors && passwordConfirmation.errors.required">¡Por favor, confirme su contraseña!</span>
+                     <span *ngIf="!passwordConfirmation.invalid && passwordConfirmation.value !== password.value">Las contraseñas no coinciden</span>
+                  </div>
+               </div>
+               <div class="col-md-6 form-group" [ngClass]="{ 'has-error': documento.dirty && documento.invalid }">
+                  <label for="numero_documento">Número de Documento:</label>
+                  <input type="number" class="form-control" name="numeroDocumento" ngModel #documento="ngModel" required>
+                  <div class="errors-container" *ngIf="documento.dirty && documento.invalid">
+                        <span *ngIf="documento.errors.required">El número de documento es requerido</span>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <button type="submit" class="btn btn-primary">Registrar</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>

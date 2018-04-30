@@ -14,11 +14,14 @@ import { AuthenticationManagerService } from './shared/authentication-manager.se
 import { AppHttpErroHandlerService } from './shared/app-http-error-handler.service';
 import { UsuarioService } from './shared/usuario.service';
 import { TokenInterceptor } from './shared/token.interceptor';
+import { CustomerRegistrationComponent } from './customer-registration/customer-registration.component';
+import { LayoutsModule } from './layouts/layouts.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    CustomerRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { TokenInterceptor } from './shared/token.interceptor';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    LayoutsModule
   ],
   providers: [
     {

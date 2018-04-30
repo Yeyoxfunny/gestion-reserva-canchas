@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+	<div class="entity-container">
+		<h2>Clientes</h2>
+		<section class="mt-4">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Email</th>
+					</tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let customer of customers">
+                  <td>{{ customer.nombres }}</td>
+                  <td>{{ customer.apellidos }}</td>
+                  <td>{{ customer.email }}</td>
+               </tr>
+            </tbody>
+			</table>
+		</section>
+	</div>
+</div>

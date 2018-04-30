@@ -1,0 +1,26 @@
+<div class="modal-header">
+   <h4 class="modal-title">Nuevo Campo Deportivo</h4>
+   <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+   </button>
+</div>
+<div class="modal-body">
+   <form>
+      <div class="form-group">
+         <label for="">Nombre</label>
+         <input type="text" class="form-control" name="nombre" [(ngModel)]="cancha.nombre">
+      </div>
+      <div class="form-group">
+         <label for="">URL Imagen</label>
+         <input type="text" class="form-control" name="urlImagen" [(ngModel)]="cancha.urlImagen">
+      </div>
+      <div class="form-group">
+         <label for="">Precio X Hora</label>
+         <input type="number" class="form-control" name="precio" [(ngModel)]="cancha.precio">
+      </div>
+   </form>
+</div>
+<div class="modal-footer">
+   <button type="button" class="btn btn-primary" (click)="save()">Guardar</button>
+   <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close()">Cancelar</button>
+</div>

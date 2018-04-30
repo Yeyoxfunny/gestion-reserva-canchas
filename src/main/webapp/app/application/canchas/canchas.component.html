@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<div class="container mt-3">
+   <section class="admin-modules mt-3">
+      <div class="row">
+         <div class="col-md-4" *ngFor="let cancha of canchas">
+            <img class="rounded-circle" src="{{cancha.urlImagen}}" alt="Generic placeholder image"
+               width="140" height="140">
+            <h4>{{cancha.nombre}}</h4>
+            <button class="btn btn-success" (click)="reservar(cancha.id)">Reservar</button>
+         </div>
+      </div>
+   </section>
+</div>

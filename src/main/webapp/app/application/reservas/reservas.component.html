@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+   <div class="entity-container">
+      <h2>Mis Reservas</h2>
+      <section class="mt-4">
+         <table class="table table-striped">
+            <thead>
+               <tr>
+                  <th>ID</th>
+                  <th>Fecha de Reserva</th>
+                  <th>Número de Horas</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let reserva of reservas">
+                  <td>{{ reserva.id }}</td>
+                  <td>{{ reserva.fecha }}</td>
+                  <td>{{ reserva.cantidadHoras }}</td>
+               </tr>
+            </tbody>
+         </table>
+      </section>
+   </div>
+</div>

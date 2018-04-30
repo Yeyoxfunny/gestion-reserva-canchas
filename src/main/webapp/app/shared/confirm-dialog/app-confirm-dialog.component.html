@@ -1,0 +1,13 @@
+<div class="modal-header">
+   <h5 class="modal-title">
+      <i class="fa fa-exclamation-triangle fa-lg fa-fw" aria-hidden="true"></i>¿Esta seguro de eliminar?</h5>
+   <button type="button" class="close cursor-pointer" aria-label="Close" (click)="close('CANCELED')">
+      <span aria-hidden="true">&times;</span>
+   </button>
+</div>
+<div class="modal-footer">
+   <button type="button" class="btn btn-primary cursor-pointer" (click)="close('OK')">
+      <i class="fa fa-check fa-fw"></i>Aceptar</button>
+   <button type="button" class="btn btn-secondary cursor-pointer" (click)="close('CANCELED')">
+      <i class="fa fa-ban fa-fw"></i>Cancelar</button>
+</div>

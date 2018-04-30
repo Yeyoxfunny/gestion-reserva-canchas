@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<div class="container mt-3" *ngIf="cancha">
+   <h3 class="m-top-and-bottom-2">Cancha</h3>
+   <hr />
+   <dl>
+      <dt>ID</dt>
+      <dd>{{ cancha.id }}</dd>
+
+      <dt>Nombre</dt>
+      <dd>{{ cancha.nombre}}</dd>
+
+      <dt>Precio x Hora</dt>
+      <dd>${{ cancha.precio}}</dd>
+
+      <dt>Foto:</dt>
+      <dd><img src="{{cancha.urlImagen}}" alt=""></dd>
+   </dl>
+</div>
